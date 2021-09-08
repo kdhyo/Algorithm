@@ -1,10 +1,5 @@
-// 뭐가문제지
-// https://velog.io/@grappe96/%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%A8%B8%EC%8A%A4-%EA%B3%A0%EB%93%9D%EC%A0%90-Kit-%EC%B2%B4%EC%9C%A1%EB%B3%B5-%EB%AC%B8%EC%A0%9C-%ED%92%80%EC%9D%B4-JS
-// 위 코드함봐야지
-
 function solution(n, lost, reserve) {
     lost.sort((a, b) => a - b);
-    reserve.sort((a, b) => a - b);
 
     reserve = reserve.filter(num => {
         if(lost.indexOf(num) !== -1) {
@@ -15,7 +10,7 @@ function solution(n, lost, reserve) {
     });
 
     const SIZE = lost.length;
-    var answer = n - SIZE;
+    let answer = n - SIZE;
     for(let i = 0; i < SIZE; i++) {
         const num = lost[i];
         if(reserve.indexOf(num+1) !== -1) {
@@ -30,3 +25,30 @@ function solution(n, lost, reserve) {
 }
 
 console.log(solution(5, [2, 5, 6], [2, 4, 6]));
+
+// 다른방안으로 해결
+// 위에껀 왜 안되는걸까
+
+function solution2(n, lost, reserve) {
+    const result = new Array(n + 1).fill(1);
+    let answer = n;
+    
+    for(let i of reserve) result[i]++;
+    for(let i of lost) result[i]--;
+    
+    lost = lost.sort((a, b) => a - b);
+    
+    for(let i = 0; i < lost.length; i++) {
+        const lost_num = lost[i];
+        if(result[lost_num] === 1) continue;
+        
+        if(lost_num > 1 && result[lost_num - 1] === 2) {
+            result[lost_num - 1] = result[lost_num - 1] - 1;
+        } else if(lost_num < n && result[lost_num + 1] === 2) {
+            result[lost_num + 1] = result[lost_num + 1] - 1;
+        } else {
+            answer--;
+        }
+    }
+    return answer;
+}
