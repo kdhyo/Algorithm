@@ -19,4 +19,13 @@ public class AlphabetDelete {
 
         return stack.isEmpty() ? 1 : 0;
     }
+
+    public static void main(String[] args) {
+        var alphabet = new AlphabetDelete();
+
+        System.out.println(alphabet.solution("cdcd"));
+		System.out.println(alphabet.solution("baabaa"));
+		System.out.println(alphabet.solution("a    a"));
+
+    }
 }
