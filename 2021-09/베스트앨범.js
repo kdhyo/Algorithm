@@ -6,7 +6,6 @@ function solution(genres, plays) {
         
         while(genreSort.length > 0) {
             const key = genreSort.shift();
-            console.log(key);
             answer.push(  ...getMaxPlays(genres, plays, key) );
         }
     } else {
