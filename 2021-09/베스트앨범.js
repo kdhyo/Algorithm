@@ -2,10 +2,13 @@ function solution(genres, plays) {
     const answer = [];
     if(genres.length > 2) {
         const playSum = getPlaySum(genres, plays);
+        console.log(playSum);
         const maxGenre = getMaxAndSecondGenre(playSum);
-
+        console.log(maxGenre);
+        
         while(maxGenre.length > 0) {
             const key = maxGenre.shift();
+            console.log(key);
             answer.push(  ...getMaxPlays(genres, plays, key) );
         }
     } else {
@@ -15,7 +18,6 @@ function solution(genres, plays) {
             return plays[0] >= plays[1] ? [0, 1] : [1, 0];
         }
     }
-    
 
     return answer;
 }
@@ -33,12 +35,10 @@ function getPlaySum(genres, plays) {
 
 function getMaxAndSecondGenre(playSum) {
     const result = [];
-    const one = getMaxGenre(playSum);
-    result.push(one);
-    
-    delete playSum[one];
-    if(Object.keys(playSum).length > 0) { 
-        result.push(getMaxGenre(playSum));
+    while(Object.keys(playSum).length > 0) {
+        const max = getMaxGenre(playSum);
+        result.push(max);
+        delete playSum[max];
     }
     
     return result;
@@ -58,14 +58,14 @@ function getMaxGenre(playSum) {
 
 function getMaxPlays(genres, plays, key) {
     const result = [];
-    const maxIdx = getMaxPlay(genres, plays, key);
+    const maxIdx = getMaxPlay(genres, plays, key, null);
     result.push(maxIdx);
     
-    const isNext = genres.filter((genre, idx) => {
+    const isNextLength = genres.filter((genre, idx) => {
        return idx !== maxIdx && key === genre
     }).length;
     
-    if(isNext && genres.includes(key)) {
+    if(isNextLength > 0 && genres.includes(key)) {
         result.push(getMaxPlay(genres, plays, key, maxIdx));
     }
     
@@ -85,4 +85,9 @@ function getMaxPlay(genres, plays, key, notIdx) {
     return maxIdx;
 }
 
-console.log(solution(["classic", "pop", "classic", "classic", "pop"], [500, 600, 150, 800, 2500]));
+// console.log(solution(["classic", "pop", "classic", "classic", "pop"], [500, 600, 150, 800, 2500]));
+// console.log(solution(["classic", "pop", "classic", "classic", "classic"], [500, 1000, 400, 300, 200, 100]));
+// console.log(solution(["A", "A", "B", "A", "B", "B", "A", "A", "A", "A"], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]));
+// console.log(solution(["A", "A", "A", "A", "B", "A"], [100, 300, 100, 500, 5000, 100]));
+// console.log(solution(["A", "A", "A", "A", "A"], [100, 300, 100, 500, 100]));
+console.log(solution(["A", "C", "B", "B", "A", "C", "C", "A", "D"], [100, 200, 100, 200, 300, 400, 100, 500, 5000]));
