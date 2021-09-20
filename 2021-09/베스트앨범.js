@@ -2,12 +2,10 @@ function solution(genres, plays) {
     const answer = [];
     if(genres.length > 2) {
         const playSum = getPlaySum(genres, plays);
-        console.log(playSum);
-        const maxGenre = getMaxAndSecondGenre(playSum);
-        console.log(maxGenre);
+        const genreSort = getGenreSortByMaxPlay(playSum);
         
-        while(maxGenre.length > 0) {
-            const key = maxGenre.shift();
+        while(genreSort.length > 0) {
+            const key = genreSort.shift();
             console.log(key);
             answer.push(  ...getMaxPlays(genres, plays, key) );
         }
@@ -33,7 +31,7 @@ function getPlaySum(genres, plays) {
     }, {});
 }
 
-function getMaxAndSecondGenre(playSum) {
+function getGenreSortByMaxPlay(playSum) {
     const result = [];
     while(Object.keys(playSum).length > 0) {
         const max = getMaxGenre(playSum);
@@ -85,9 +83,9 @@ function getMaxPlay(genres, plays, key, notIdx) {
     return maxIdx;
 }
 
-// console.log(solution(["classic", "pop", "classic", "classic", "pop"], [500, 600, 150, 800, 2500]));
-// console.log(solution(["classic", "pop", "classic", "classic", "classic"], [500, 1000, 400, 300, 200, 100]));
-// console.log(solution(["A", "A", "B", "A", "B", "B", "A", "A", "A", "A"], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]));
-// console.log(solution(["A", "A", "A", "A", "B", "A"], [100, 300, 100, 500, 5000, 100]));
-// console.log(solution(["A", "A", "A", "A", "A"], [100, 300, 100, 500, 100]));
+console.log(solution(["classic", "pop", "classic", "classic", "pop"], [500, 600, 150, 800, 2500]));
+console.log(solution(["classic", "pop", "classic", "classic", "classic"], [500, 1000, 400, 300, 200, 100]));
+console.log(solution(["A", "A", "B", "A", "B", "B", "A", "A", "A", "A"], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]));
+console.log(solution(["A", "A", "A", "A", "B", "A"], [100, 300, 100, 500, 5000, 100]));
+console.log(solution(["A", "A", "A", "A", "A"], [100, 300, 100, 500, 100]));
 console.log(solution(["A", "C", "B", "B", "A", "C", "C", "A", "D"], [100, 200, 100, 200, 300, 400, 100, 500, 5000]));
