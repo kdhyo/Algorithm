@@ -17,7 +17,7 @@ console.log(solution("123")); //123
 
 
 /* 다른 사람이 짠 배우고 싶은 코드 */
-function solution(s) {
+function solution2(s) {
     s = s.replace(/zero/gi, 0)
     .replace(/one/gi, 1)
     .replace(/two/gi, 2)
