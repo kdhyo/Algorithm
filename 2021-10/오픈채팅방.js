@@ -3,9 +3,9 @@ function solution(record) {
     const result = {};
     
     record.forEach(message => {
-        const splitArr = message.split(" ");
-        if(splitArr[0] === 'Enter' || splitArr[0] === 'Change') {
-            result[splitArr[1]] = splitArr[2];
+        const [status, id, name] = message.split(" ");
+        if(status === 'Enter' || status === 'Change') {
+            result[id] = name;
         }
     });
 
