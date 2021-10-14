@@ -14,7 +14,7 @@ function solution(n, k, card){
 }
 
 /* 해설 풀이 */
-function solution(n, k, card){
+function solution2(n, k, card){
     let answer;
     let tmp = new Set();
     for(let i=0; i<n; i++){
