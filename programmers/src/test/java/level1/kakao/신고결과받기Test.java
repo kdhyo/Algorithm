@@ -1,4 +1,4 @@
-package level2.kakao2022;
+package level1.kakao;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
