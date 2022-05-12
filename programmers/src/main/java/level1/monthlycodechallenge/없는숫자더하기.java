@@ -17,4 +17,19 @@ public class 없는숫자더하기 {
 			.sum();
 	}
 
+	/***
+	 * 1~9 를 다 더한 후 (45)에서 인수를 빼는 생각의 전환이 멋졌음.
+	 */
+	public int solution2(int[] numbers) {
+		int sum = 45;
+		for (int i : numbers) {
+			sum -= i;
+		}
+		return sum;
+	}
+
+	public int solution3(int[] numbers) {
+		return 45 - Arrays.stream(numbers).sum();
+	}
+
 }
