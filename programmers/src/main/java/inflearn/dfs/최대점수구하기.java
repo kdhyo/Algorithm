@@ -2,14 +2,14 @@ package inflearn.dfs;
 
 public class 최대점수구하기 {
 
-	private int limit;
+	private int limitTime;
 	private int count;
 	private int[][] score;
 
 	private int maxScore;
 
-	public int solution(int limit, int[][] score) {
-		this.limit = limit;
+	public int solution(int limitTime, int[][] score) {
+		this.limitTime = limitTime;
 		this.count = score.length;
 		this.score = score;
 
@@ -18,21 +18,21 @@ public class 최대점수구하기 {
 		return maxScore;
 	}
 
-	private void dfs(int level, int sum, int time) {
-		if (time > limit) {
+	private void dfs(int level, int sumScore, int sumTime) {
+		if (sumTime > limitTime) {
 			return;
 		}
 
-		if (sum > maxScore) {
-			maxScore = sum;
+		if (sumScore > maxScore) {
+			maxScore = sumScore;
 		}
 
 		if (level == count) {
 			return;
 		}
 
-		dfs(level + 1, sum + score[level][0], time + score[level][1]);
-		dfs(level + 1, sum, time);
+		dfs(level + 1, sumScore + score[level][0], sumTime + score[level][1]);
+		dfs(level + 1, sumScore, sumTime);
 	}
 
 
