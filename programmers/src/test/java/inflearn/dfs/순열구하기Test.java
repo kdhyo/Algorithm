@@ -25,6 +25,9 @@ class 순열구하기Test {
 		List<String> solution = 순열구하기.solution(m, arr);
 
 		// then
+		for (String s : solution) {
+			System.out.println("s = " + s);
+		}
 		assertThat(solution).hasSize(6);
 	}
 
